@@ -11,3 +11,22 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+/* font-Parastoo */
+@font-face {
+  font-family: Parastoo;
+  src: url('http://fonts.codearena.ir/rastikerdar/parastoo/parastoo.eot');
+  src: url('http://fonts.codearena.ir/rastikerdar/parastoo/parastoo.eot?#iefix') format('embedded-opentype'),
+       url('http://fonts.codearena.ir/rastikerdar/parastoo/parastoo.woff') format('woff'),
+       url('http://fonts.codearena.ir/rastikerdar/parastoo/parastoo.ttf') format('truetype');
+  font-weight: normal;
+}  
+/* font-Titrbold */
+@font-face {
+  font-family: Titrbold;
+  src: url('http://fonts.codearena.ir/b/titrbold/titrbold.eot');
+  src: url('http://fonts.codearena.ir/b/titrbold/titrbold.eot?#iefix') format('embedded-opentype'),
+       url('http://fonts.codearena.ir/b/titrbold/titrbold.woff') format('woff'),
+       url('http://fonts.codearena.ir/b/titrbold/titrbold.ttf') format('truetype');
+  font-weight: normal;
+}

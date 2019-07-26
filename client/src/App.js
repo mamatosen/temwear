@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -19,8 +18,8 @@ const theme = createMuiTheme({
   direction: 'rtl',
   typography:{
     fontFamily: [
-      'Vazir',
-      'Samim'
+      'Parastoo',
+      'Titrbold',
     ],
     direction: 'rtl',
   }
@@ -50,7 +49,7 @@ function App(props) {
       <Grid container className={classes.header}>
         <div className={classes.transparency}>
           <Grid container style={{width: "100%", height: "100%"}} justify="center" alignItems="center">
-            <Typography color="secondary" variant="h1">TEM WEAR WEBSITE</Typography>
+            <Typography color="secondary" variant="h1" fontFamily='Titrbold'><b>محصولات پوشیدنی تِم</b></Typography>
           </Grid>
         </div>
       </Grid>

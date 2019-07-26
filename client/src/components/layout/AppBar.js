@@ -1,5 +1,4 @@
 import React from 'react';
-import App from '../../App';
 
 import { withStyles } from '@material-ui/styles';
 import { Grid, AppBar, Toolbar, Button, Typography } from '@material-ui/core';
