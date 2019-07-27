@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
 
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -9,6 +10,7 @@ import { Typography, withStyles, Grid } from '@material-ui/core';
 
 import Appbar from './components/layout/Appbar';
 import Home from './components/home/Home';
+import Shop from './components/Shop/Shop';
 
 const theme = createMuiTheme({
   palette:{
@@ -40,8 +42,11 @@ function App(props) {
   return (
     <ThemeProvider theme={theme}>
       <Grid container direction="column" justify="flex-start" alignItems="center">
-        <Appbar className={classes.fixed} pageIndex={pageIndex}/>
-        <Home/>
+        <Router>
+          <Appbar className={classes.fixed} pageIndex={pageIndex} setPageIndex={setPageIndex}/>
+          <Route path="/" exact component={Home} />
+          <Route path="/shop" exact component={Shop} />
+        </Router>
       </Grid>
     </ThemeProvider>
   );
