@@ -11,27 +11,24 @@ const styles = {
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
+    }, 
+    activeLink: {
+
     }
 }
 
 class Appbar extends React.Component{
-
-    constructor(props){
-        super(props);
-        
-    }
-
     render(){
-        const {classes} = this.props;
+        const { classes, pageIndex } = this.props;
         return(
-            <AppBar position="static" color="primary">
+            <AppBar position="fixed" color="primary">
                 <Toolbar>
                     <Grid container style={{width: '100%'}} alignItems="center" direction="row-reverse">
                         <div className={classes.logoDiv}>
                         </div>
                         <Grid>
                             <Button color="secondary"><Typography>درباره ما</Typography></Button>
-                            <Button color="secondary"><Typography>خانه</Typography></Button>
+                            <Button color={pageIndex==0?"#000":"secondary"} variant={pageIndex==0?"outlined":"text"}><Typography>خانه</Typography></Button>
                         </Grid>
                     </Grid>
                 </Toolbar>
