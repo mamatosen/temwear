@@ -5,11 +5,13 @@ import { withStyles } from '@material-ui/core';
 
 const styles = {
     slideShowImg:{
-        height: 'auto',
+        height: '100%',
         width: '100%',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
+        position: 'absolute',
+        zIndex: -1,
     }
 };
 
@@ -22,32 +24,27 @@ const imgLinks = [
 ];
 
 class MainCrousel extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            index: 0,
+        };
+    }
+
+    tick(){
+        this.setState({index: this.state.index === imgLinks.length - 1 ? 0 : this.state.index + 1})
+    }
+
+    componentDidMount(){
+        setInterval(this.tick.bind(this), 10000);
+    }
+
     render(){
         const {classes, carouselHeight} = this.props;
-
         return (
-            <Slideshow
-                showIndex={false}
-                showArrows={false}
-                slideInterval={10 * 1000}
-                height={carouselHeight}
-            >
-                {
-                    imgLinks.map((link, index) => {
-                        return(
-                            <img src={link} alt={index} className={classes.slideShowImg} key={index}/> 
-                        );
-                    })
-                }
-            </Slideshow>
+            <div className={classes.slideShowImg} style={{background: 'url("' + imgLinks[this.state.index] + '")'}}/>
         );
     }
-}
-
-const TestComp = (propss) => {
-    return(
-        <h1>{propss.input}</h1>
-    );
 }
 
 export default withStyles(styles)(MainCrousel);

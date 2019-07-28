@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -27,7 +27,8 @@ const theme = createMuiTheme({
       'Titrbold',
     ],
     direction: 'rtl',
-  }
+  },
+  direction: 'rtl',
 });
 
 const style = {
@@ -46,10 +47,13 @@ function App(props) {
       <Grid container direction="column" justify="flex-start" alignItems="center">
         <Router>
           <Appbar className={classes.fixed} pageIndex={pageIndex} setPageIndex={setPageIndex}/>
-          <Route path="/" exact component={Home} />
-          <Route path="/shop" exact component={Shop} />
-          <Route path="/about" exact component={About} />
-          <Route path="/categories" exact component={Cats} />
+          <Switch>
+            <Route path="/" exact component={Home} />
+            <Route path="/shop" exact component={Shop} />
+            <Route path="/about" exact component={About} />
+            <Route path="/shop/categories" exact component={Cats} />
+            <Route path="/shop/categories/:cat" exact component={Cats} />
+          </Switch>
         </Router>
       </Grid>
     </ThemeProvider>
