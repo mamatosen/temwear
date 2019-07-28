@@ -11,6 +11,8 @@ import { Typography, withStyles, Grid } from '@material-ui/core';
 import Appbar from './components/layout/Appbar';
 import Home from './components/home/Home';
 import Shop from './components/Shop/Shop';
+import Cats from './components/categories/Categories';
+import About from './components/about/About';
 
 const theme = createMuiTheme({
   palette:{
@@ -46,6 +48,8 @@ function App(props) {
           <Appbar className={classes.fixed} pageIndex={pageIndex} setPageIndex={setPageIndex}/>
           <Route path="/" exact component={Home} />
           <Route path="/shop" exact component={Shop} />
+          <Route path="/about" exact component={About} />
+          <Route path="/categories" exact component={Cats} />
         </Router>
       </Grid>
     </ThemeProvider>

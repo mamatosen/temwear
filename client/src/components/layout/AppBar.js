@@ -19,21 +19,69 @@ const styles = {
 }
 
 class Appbar extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            appbarLinks: [
+                {
+                    index: 0,
+                    name: "خانه",
+                    inside: null,
+                    path: '/',
+                },
+                {
+                    index: 1,
+                    name: "درباره ما",        
+                    inside: null,
+                    path: '/about',
+                },
+                {
+                    index: 2,
+                    name: "دسته بندی ها",
+                    inside: [],
+                    path: '/categories',
+                }
+            ]
+        };
+    }
+
+    makeMenu(appbarLinks, setPageIndex, pageIndex){
+        return(
+            appbarLinks.map((link) => {
+                const {index, name} = link;
+                return(
+                    <Button color={pageIndex===index?"default":"secondary"} variant={pageIndex===index?"outlined":"text"} onClick={() => this.linkHandler(index, setPageIndex)} key={link.index}><Typography>{name}</Typography></Button>
+                );
+            }).reverse()
+        );
+    }
+
     linkHandler(index, setPageIndex){
-        this.props.history.push(index===0?'/':'shop');
+        let p = '/';
+        this.state.appbarLinks.forEach((link) => {
+            if(link.index === index){
+                p = link.path;
+                return;
+            }
+        })
+        this.props.history.push(p);
         setPageIndex(index);
     }
     
     render(){
-        const { classes, pageIndex, setPageIndex } = this.props;
+        const { classes, pageIndex, setPageIndex, history } = this.props;
+        this.state.appbarLinks.forEach((link) => {
+            if(link.path === history.location.pathname){
+                setPageIndex(link.index);
+            }
+        });
         return(
             <AppBar position="fixed" color="primary">
                 <Toolbar>
                     <Grid container style={{width: '100%'}} alignItems="center" direction="row-reverse">
                         <div className={classes.logoDiv}/>
                         <Grid>
-                            <Button color={pageIndex===1?"default":"secondary"} variant={pageIndex===1?"outlined":"text"} onClick={() => this.linkHandler(1, setPageIndex)}><Typography>درباره ما</Typography></Button>
-                            <Button color={pageIndex===0?"default":"secondary"} variant={pageIndex===0?"outlined":"text"} onClick={() => this.linkHandler(0, setPageIndex)}><Typography>خانه</Typography></Button>
+                            {this.makeMenu(this.state.appbarLinks, setPageIndex, pageIndex)}
                         </Grid>
                     </Grid>
                 </Toolbar>
