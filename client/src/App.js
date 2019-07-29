@@ -13,6 +13,7 @@ import Home from './components/home/Home';
 import Shop from './components/Shop/Shop';
 import Cats from './components/categories/Categories';
 import About from './components/about/About';
+import Login from './components/auth/Login';
 
 const theme = createMuiTheme({
   palette:{
@@ -25,8 +26,7 @@ const theme = createMuiTheme({
       'Parastoo',
       'Titrbold',
     ],
-    direction: 'rtl',
-  },
+  },  
   direction: 'rtl',
 });
 
@@ -39,7 +39,7 @@ const style = {
 
 function App(props) {
   const { classes } = props;
-  const [pageIndex, setPageIndex] = useState(0);
+  const [pageIndex, setPageIndex] = useState(-1);
 
   return (
     <ThemeProvider theme={theme}>
@@ -52,6 +52,7 @@ function App(props) {
             <Route path="/about" exact component={About} />
             <Route path="/shop/categories" exact component={Cats} />
             <Route path="/shop/categories/:cat" exact component={Cats} />
+            <Route path="/login" exact component={Login} />
           </Switch>
         </Router>
       </Grid>

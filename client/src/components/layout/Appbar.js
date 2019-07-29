@@ -104,16 +104,17 @@ class Appbar extends React.Component{
                 const {index, name} = link;
                 if(!link.inside)
                 {
+                    console.log(pageIndex, index);
                     return(
-                        <Button key={link.index + 100} color={pageIndex===index?"secondary":"default"} variant={pageIndex===index?"outlined":"text"} onClick={() => this.handleLinkClick(index, setPageIndex)} key={link.index}><Typography>{name}</Typography></Button>
+                        <Button key={index + 100} color={pageIndex===index?"secondary":"default"} variant={pageIndex===index?"outlined":"text"} onClick={() => this.handleLinkClick(index, setPageIndex)} key={link.index}><Typography>{name}</Typography></Button>
                     );
                 }
                 else{
                     return(
                         <>
-                            <Button key={link.index + 100} color={pageIndex===index?"secondary":"default"} variant={pageIndex===index?"outlined":"text"} onClick={this.handleClick.bind(this)} key={link.index}><Typography>{name}</Typography></Button>
+                            <Button key={index + 100} color={pageIndex===index?"secondary":"default"} variant={pageIndex===index?"outlined":"text"} onClick={this.handleClick.bind(this)} key={link.index}><Typography>{name}</Typography></Button>
                             <StyledMenu
-                                key={link.index + 200}
+                                key={index + 200}
                                 id="customized-menu"
                                 anchorEl={this.state.anchorEl}
                                 keepMounted
@@ -165,7 +166,8 @@ class Appbar extends React.Component{
         let pathname = String(history.location.pathname);
         this.state.appbarLinks.forEach((link) => {
             if(pathname.includes(link.path)){
-                setPageIndex(link.index);
+                if(!(link.path === '/' && link.path != pathname))
+                    setPageIndex(link.index);
             }
         });
 
@@ -173,16 +175,18 @@ class Appbar extends React.Component{
             <AppBar position="fixed" color="primary">
                 <Toolbar>
                     <Grid container style={{width: '100%'}} alignItems="center" direction="row-reverse">
-                        <Grid xs={8}>
+                        <Grid item xs={8}>
                             <Grid container direction="row-reverse" alignItems="center">
                                 <Link to="/"><div className={classes.logoDiv}/></Link>
                                 <Typography variant="h6" style={{marginLeft: 25, fontFamily:'Titrbold'}}>تِم</Typography>
                                 {this.makeMenu(this.state.appbarLinks, setPageIndex, pageIndex)}
                             </Grid>
                         </Grid>
-                        <Grid xs={4}>
+                        <Grid item xs={4}>
                             <Grid container justify="flex-start">
-                                <Button className={classes.loginButton}><AccountCircle /></Button>
+                                <Link to="/login">
+                                    <Button className={classes.loginButton}><AccountCircle /></Button>
+                                </Link>
                                 <Button className={classes.loginButton}><ShoppingCart /></Button>
                             </Grid>
                         </Grid>
