@@ -12,6 +12,7 @@ const styles = {
         backgroundSize: 'cover',
         position: 'absolute',
         zIndex: -1,
+        background: 'url("https://i.ibb.co/BfDcZ2X/1.jpg")',
     }
 };
 

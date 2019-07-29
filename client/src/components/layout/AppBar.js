@@ -7,6 +7,8 @@ import { Grid, AppBar, Toolbar, Button, Typography, Menu, MenuItem, ListItem, Li
 import DraftsIcon from '@material-ui/icons/Drafts';
 import SendIcon from '@material-ui/icons/Send';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
+import { relative } from 'path';
+import { AccountCircle, ShoppingCart } from '@material-ui/icons';
 
 const styles = {
     logoDiv: {
@@ -17,10 +19,11 @@ const styles = {
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
         marginLeft: 10,
-    }, 
-    activeLink: {
-
-    }
+    },
+    loginButton: {
+        position: 'relative',
+        left: 0
+    },
 }
 
 const StyledMenu = withStyles({
@@ -102,13 +105,13 @@ class Appbar extends React.Component{
                 if(!link.inside)
                 {
                     return(
-                        <Button key={link.index + 100} color={pageIndex===index?"default":"secondary"} variant={pageIndex===index?"outlined":"text"} onClick={() => this.handleLinkClick(index, setPageIndex)} key={link.index}><Typography>{name}</Typography></Button>
+                        <Button key={link.index + 100} color={pageIndex===index?"secondary":"default"} variant={pageIndex===index?"outlined":"text"} onClick={() => this.handleLinkClick(index, setPageIndex)} key={link.index}><Typography>{name}</Typography></Button>
                     );
                 }
                 else{
                     return(
                         <>
-                            <Button key={link.index + 100} color={pageIndex===index?"default":"secondary"} variant={pageIndex===index?"outlined":"text"} onClick={this.handleClick.bind(this)} key={link.index}><Typography>{name}</Typography></Button>
+                            <Button key={link.index + 100} color={pageIndex===index?"secondary":"default"} variant={pageIndex===index?"outlined":"text"} onClick={this.handleClick.bind(this)} key={link.index}><Typography>{name}</Typography></Button>
                             <StyledMenu
                                 key={link.index + 200}
                                 id="customized-menu"
@@ -120,7 +123,7 @@ class Appbar extends React.Component{
                                 {link.inside.map((item, index) => {
                                     return(
                                         <Link to={item.path} style={{textDecoration: 'none'}} key={index}>
-                                            <StyledMenuItem>
+                                            <StyledMenuItem onClick={this.handleClose.bind(this)}>
                                                 <Typography color="secondary">{item.name}</Typography>
                                             </StyledMenuItem>
                                         </Link>
@@ -130,7 +133,7 @@ class Appbar extends React.Component{
                         </>
                     );
                 }
-            }).reverse()
+            })
         );
     }
 
@@ -167,13 +170,21 @@ class Appbar extends React.Component{
         });
 
         return(
-            <AppBar position="fixed" color="primary" style={{background: 'rgba(0, 0, 0, 0.8)'}}>
+            <AppBar position="fixed" color="primary">
                 <Toolbar>
                     <Grid container style={{width: '100%'}} alignItems="center" direction="row-reverse">
-                        <Link to="/"><div className={classes.logoDiv}/></Link>
-                        <Typography variant="h6" style={{marginLeft: 25, fontFamily:'Titrbold'}}>تِم</Typography>
-                        <Grid>
-                            {this.makeMenu(this.state.appbarLinks, setPageIndex, pageIndex)}
+                        <Grid xs={8}>
+                            <Grid container direction="row-reverse" alignItems="center">
+                                <Link to="/"><div className={classes.logoDiv}/></Link>
+                                <Typography variant="h6" style={{marginLeft: 25, fontFamily:'Titrbold'}}>تِم</Typography>
+                                {this.makeMenu(this.state.appbarLinks, setPageIndex, pageIndex)}
+                            </Grid>
+                        </Grid>
+                        <Grid xs={4}>
+                            <Grid container justify="flex-start">
+                                <Button className={classes.loginButton}><AccountCircle /></Button>
+                                <Button className={classes.loginButton}><ShoppingCart /></Button>
+                            </Grid>
                         </Grid>
                     </Grid>
                 </Toolbar>

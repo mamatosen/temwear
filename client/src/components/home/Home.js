@@ -1,5 +1,5 @@
 import React from 'react';
-import { withStyles, Grid, Typography } from '@material-ui/core';
+import { withStyles, Grid, Typography, Container, Paper } from '@material-ui/core';
 
 import MainCarousel from './MainCarousel';
 
@@ -28,7 +28,11 @@ class Home extends React.Component{
                         <Typography variant="h6" style={{color: 'rgba(255, 255, 255, 0.5)'}}>تمتو عوض کن</Typography>
                     </Grid>
                 </div>
-                <h1>Hi</h1>
+                <Container maxWidth="md">
+                    <Paper>
+                        <h1>Hi</h1>
+                    </Paper>
+                </Container>
             </>
         );
     }

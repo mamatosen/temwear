@@ -4,7 +4,7 @@ import './App.css';
 
 import { createMuiTheme } from '@material-ui/core/styles';
 import Amber from '@material-ui/core/colors/amber';
-import Grey from '@material-ui/core/colors/grey';
+import Cyan from '@material-ui/core/colors/cyan';
 import { ThemeProvider } from '@material-ui/styles';
 import { Typography, withStyles, Grid } from '@material-ui/core';
 
@@ -16,8 +16,7 @@ import About from './components/about/About';
 
 const theme = createMuiTheme({
   palette:{
-    type: 'dark',
-    primary: {main: Grey['900']},
+    primary: {main: Cyan['700'], dark: Cyan['900'], light: Cyan['50']},
     secondary: Amber,
   },
   direction: 'rtl',
