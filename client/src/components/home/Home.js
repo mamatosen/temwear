@@ -30,7 +30,7 @@ class Home extends React.Component{
                 </div>
                 <Container maxWidth="md">
                     <Paper>
-                        <h1>Hi</h1>
+                        <h1>سلام</h1>
                     </Paper>
                 </Container>
             </>

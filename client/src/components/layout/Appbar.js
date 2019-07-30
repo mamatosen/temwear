@@ -3,7 +3,15 @@ import { withRouter, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { withStyles } from '@material-ui/styles';
-import { Grid, AppBar, Toolbar, Button, Typography, Menu, MenuItem, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import ListItem from '@material-ui/core/ListItem';
+import Hidden from '@material-ui/core/Hidden';
 import DraftsIcon from '@material-ui/icons/Drafts';
 import SendIcon from '@material-ui/icons/Send';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
@@ -104,7 +112,6 @@ class Appbar extends React.Component{
                 const {index, name} = link;
                 if(!link.inside)
                 {
-                    console.log(pageIndex, index);
                     return(
                         <Button key={index + 100} color={pageIndex===index?"secondary":"default"} variant={pageIndex===index?"outlined":"text"} onClick={() => this.handleLinkClick(index, setPageIndex)} key={link.index}><Typography>{name}</Typography></Button>
                     );
@@ -174,17 +181,19 @@ class Appbar extends React.Component{
         return(
             <AppBar position="fixed" color="primary">
                 <Toolbar>
-                    <Grid container style={{width: '100%'}} alignItems="center" direction="row-reverse">
+                    <Grid container style={{width: '100%'}} alignItems="center">
                         <Grid item xs={8}>
-                            <Grid container direction="row-reverse" alignItems="center">
+                            <Grid container alignItems="center">
                                 <Link to="/"><div className={classes.logoDiv}/></Link>
-                                <Typography variant="h6" style={{marginLeft: 25, fontFamily:'Titrbold'}}>تِم</Typography>
+                                <Hidden smDown>
+                                    <Typography variant="h6" style={{marginLeft: 25, fontFamily:'Titrbold'}}>تِم</Typography>
+                                </Hidden>
                                 {this.makeMenu(this.state.appbarLinks, setPageIndex, pageIndex)}
                             </Grid>
                         </Grid>
                         <Grid item xs={4}>
-                            <Grid container justify="flex-start">
-                                <Link to="/login">
+                            <Grid container justify="flex-end">
+                                <Link to="/auth">
                                     <Button className={classes.loginButton}><AccountCircle /></Button>
                                 </Link>
                                 <Button className={classes.loginButton}><ShoppingCart /></Button>

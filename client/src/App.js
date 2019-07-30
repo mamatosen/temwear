@@ -52,7 +52,7 @@ function App(props) {
             <Route path="/about" exact component={About} />
             <Route path="/shop/categories" exact component={Cats} />
             <Route path="/shop/categories/:cat" exact component={Cats} />
-            <Route path="/login" exact component={Login} />
+            <Route path="/auth" exact component={Login} />
           </Switch>
         </Router>
       </Grid>

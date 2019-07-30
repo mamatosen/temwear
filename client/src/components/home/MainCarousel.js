@@ -12,16 +12,17 @@ const styles = {
         backgroundSize: 'cover',
         position: 'absolute',
         zIndex: -1,
-        background: 'url("https://i.ibb.co/BfDcZ2X/1.jpg")',
+        background: 'url("http://enactus.org/seeopportunity/wp-content/uploads/2014/09/tshirts-featured.jpg")',
     }
 };
 
 const imgLinks = [
-    "https://i.ibb.co/BfDcZ2X/1.jpg",
-    "https://i.ibb.co/YTHCdxG/2.jpg",
-    "https://i.ibb.co/kD630y4/3.jpg",
-    "https://i.ibb.co/kDZcKPM/4.jpg",
-    "https://i.ibb.co/Rzzyxh7/5.jpg",
+    'http://enactus.org/seeopportunity/wp-content/uploads/2014/09/tshirts-featured.jpg',
+    // "https://i.ibb.co/BfDcZ2X/1.jpg",
+    // "https://i.ibb.co/YTHCdxG/2.jpg",
+    // "https://i.ibb.co/kD630y4/3.jpg",
+    // "https://i.ibb.co/kDZcKPM/4.jpg",
+    // "https://i.ibb.co/Rzzyxh7/5.jpg",
 ];
 
 class MainCrousel extends React.Component{
@@ -33,17 +34,21 @@ class MainCrousel extends React.Component{
     }
 
     tick(){
-        this.setState({index: this.state.index === imgLinks.length - 1 ? 0 : this.state.index + 1})
+        if(imgLinks.length > 1){
+            this.setState({index: this.state.index === imgLinks.length - 1 ? 0 : this.state.index + 1})
+        }
     }
 
     componentDidMount(){
-        setInterval(this.tick.bind(this), 10000);
+        //setInterval(this.tick.bind(this), 10000);
     }
 
     render(){
         const {classes, carouselHeight} = this.props;
         return (
-            <div className={classes.slideShowImg} style={{background: 'url("' + imgLinks[this.state.index] + '")'}}/>
+            <div className={classes.slideShowImg} 
+                // style={{background: 'url("' + imgLinks[this.state.index] + '")'}}
+            />
         );
     }
 }
