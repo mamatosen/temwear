@@ -7,6 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -17,6 +18,7 @@ import SendIcon from '@material-ui/icons/Send';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import { relative } from 'path';
 import { AccountCircle, ShoppingCart } from '@material-ui/icons';
+import Toc from '@material-ui/icons/Toc';
 
 const styles = {
     logoDiv: {
@@ -184,19 +186,26 @@ class Appbar extends React.Component{
                     <Grid container style={{width: '100%'}} alignItems="center">
                         <Grid item xs={8}>
                             <Grid container alignItems="center">
+                                <Hidden smUp>
+                                    <IconButton size="small">
+                                        <Toc />
+                                    </IconButton>
+                                </Hidden>
                                 <Link to="/"><div className={classes.logoDiv}/></Link>
                                 <Hidden smDown>
                                     <Typography variant="h6" style={{marginLeft: 25, fontFamily:'Titrbold'}}>تِم</Typography>
                                 </Hidden>
-                                {this.makeMenu(this.state.appbarLinks, setPageIndex, pageIndex)}
+                                <Hidden only={'xs'}>
+                                    {this.makeMenu(this.state.appbarLinks, setPageIndex, pageIndex)}                                    
+                                </Hidden>
                             </Grid>
                         </Grid>
                         <Grid item xs={4}>
                             <Grid container justify="flex-end">
+                                <Button className={classes.loginButton}><ShoppingCart /></Button>
                                 <Link to="/auth">
                                     <Button className={classes.loginButton}><AccountCircle /></Button>
                                 </Link>
-                                <Button className={classes.loginButton}><ShoppingCart /></Button>
                             </Grid>
                         </Grid>
                     </Grid>

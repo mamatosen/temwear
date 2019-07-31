@@ -2,16 +2,18 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 
-import { createMuiTheme } from '@material-ui/core/styles';
+import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 import Amber from '@material-ui/core/colors/amber';
 import Cyan from '@material-ui/core/colors/cyan';
-import { ThemeProvider } from '@material-ui/styles';
-import { Typography, withStyles, Grid } from '@material-ui/core';
+import ThemeProvider from '@material-ui/styles/ThemeProvider';
+import { withStyles } from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
 
 import Appbar from './components/layout/Appbar';
 import Home from './components/home/Home';
 import Shop from './components/Shop/Shop';
 import Cats from './components/categories/Categories';
+import Post from './components/post/Post';
 import About from './components/about/About';
 import Login from './components/auth/Login';
 
@@ -26,7 +28,13 @@ const theme = createMuiTheme({
       'Parastoo',
       'Titrbold',
     ],
-  },  
+    h1: {
+      fontSize: '3rem',
+      '@media (min-width:600px)': {
+        fontSize: '6rem',
+      },
+    }
+  },
   direction: 'rtl',
 });
 
@@ -52,6 +60,7 @@ function App(props) {
             <Route path="/about" exact component={About} />
             <Route path="/shop/categories" exact component={Cats} />
             <Route path="/shop/categories/:cat" exact component={Cats} />
+            <Route path="/shop/post/:id" exact component={Post} />
             <Route path="/auth" exact component={Login} />
           </Switch>
         </Router>
