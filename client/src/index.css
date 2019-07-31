@@ -31,3 +31,7 @@ code {
        url('http://fonts.codearena.ir/b/titrbold/titrbold.ttf') format('truetype');
   font-weight: normal;
 }
+/* Nunito font */
+@font-face {
+  font-family: 'Open Sans', sans-serif;
+}

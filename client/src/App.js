@@ -16,6 +16,7 @@ import Cats from './components/categories/Categories';
 import Post from './components/post/Post';
 import About from './components/about/About';
 import Login from './components/auth/Login';
+import Footer from './components/layout/Footer';
 
 const theme = createMuiTheme({
   palette:{
@@ -27,6 +28,7 @@ const theme = createMuiTheme({
     fontFamily: [
       'Parastoo',
       'Titrbold',
+      'Nunito',
     ],
     h1: {
       fontSize: '3rem',
@@ -64,6 +66,7 @@ function App(props) {
             <Route path="/auth" exact component={Login} />
           </Switch>
         </Router>
+        <Footer />
       </Grid>
     </ThemeProvider>
   );

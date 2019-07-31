@@ -12,13 +12,17 @@ import Typography from '@material-ui/core/Typography';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import ListItem from '@material-ui/core/ListItem';
+import List from '@material-ui/core/List';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import Divider from '@material-ui/core/Divider';
 import Hidden from '@material-ui/core/Hidden';
-import DraftsIcon from '@material-ui/icons/Drafts';
-import SendIcon from '@material-ui/icons/Send';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
-import { relative } from 'path';
-import { AccountCircle, ShoppingCart } from '@material-ui/icons';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import ShoppingCart from '@material-ui/icons/ShoppingCart';
 import Toc from '@material-ui/icons/Toc';
+import ListItemText from '@material-ui/core/ListItemText';
+import MailIcon from '@material-ui/icons/Mail';
+import Drawer from '@material-ui/core/Drawer';
 
 const styles = {
     logoDiv: {
@@ -105,7 +109,14 @@ class Appbar extends React.Component{
                 }
             ],
             anchorEl: null,
+            openDrawer: false,
         };
+    }
+
+    toggleDrawer(event, open) {
+        this.setState({
+            openDrawer: open
+        });
     }
 
     makeMenu(appbarLinks, setPageIndex, pageIndex){
@@ -144,6 +155,26 @@ class Appbar extends React.Component{
                     );
                 }
             })
+        );
+    }
+
+    makeSideBar(appbarLinks){
+        return(
+            <div
+                role="presentation"
+                onClick={(e) => this.toggleDrawer(e, false)}
+                onKeyDown={(e) => this.toggleDrawer(e, false)}
+            >
+                <List>
+                    {appbarLinks.map((link, index) => (
+                        <ListItem button key={link.index}>
+                            <Link to={link.path}>
+                                <ListItemText primary={link.name} />
+                            </Link>
+                        </ListItem>
+                    ))}
+                </List>
+            </div>
         );
     }
 
@@ -187,9 +218,12 @@ class Appbar extends React.Component{
                         <Grid item xs={8}>
                             <Grid container alignItems="center">
                                 <Hidden smUp>
-                                    <IconButton size="small">
+                                    <IconButton size="small" onClick={(e)=>{this.toggleDrawer(e, true)}}>
                                         <Toc />
                                     </IconButton>
+                                    <Drawer open={this.state.openDrawer} onClose={(e) => {this.toggleDrawer(e, false)}}>
+                                        {this.makeMenu(this.state.appbarLinks, setPageIndex, pageIndex)}
+                                    </Drawer>
                                 </Hidden>
                                 <Link to="/"><div className={classes.logoDiv}/></Link>
                                 <Hidden smDown>
